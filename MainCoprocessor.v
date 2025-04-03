@@ -121,8 +121,8 @@ module MainCoprocessor (
                         Counter_wait <= Counter_wait + 1; // Aguarda por 3 ciclos de clock
                     end else if (index < 25) begin
                         // Lê os dados das matrizes A e B
-                        matrix_a_Receive[(index * 8) +: 8] <= mem_data_out[7:0];
-                        matrix_b_Receive[(index * 8) +: 8] <= mem_data_out[15:8];
+                        matrix_a_Receive[(index << 3) +: 8] <= mem_data_out[7:0];
+                        matrix_b_Receive[(index << 3) +: 8] <= mem_data_out[15:8];
                         mem_addr <= mem_addr + 1;        // Avança o endereço da memória
                         index <= index + 1;
                     end else begin
@@ -142,7 +142,7 @@ module MainCoprocessor (
                     end else begin
                         // Armazena os resultados calculados
                         for (index = 0; index < 25; index = index + 1) begin
-                            matrix_Result[index] <= matrix_out[index * 8 +: 8]; // Extrai resultados da saída do coprocessador
+                            matrix_Result[index] <= matrix_out[index << 3 +: 8]; // Extrai resultados da saída do coprocessador
                         end
                         index <= 0;
                         shift_index <= 0;

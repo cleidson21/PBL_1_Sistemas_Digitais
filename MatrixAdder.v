@@ -1,7 +1,7 @@
 module MatrixAdder (
     input signed [199:0] matrix_A,  // Matriz A de entrada (25 elementos de 8 bits)
     input signed [199:0] matrix_B,  // Matriz B de entrada (25 elementos de 8 bits)
-    output reg [199:0] result_out,  // Resultado da soma de A e B
+    output reg signed [199:0] result_out,  // Resultado da soma de A e B
     output reg overflow             // Flag de overflow (indica se ocorreu overflow)
 );
 
@@ -13,12 +13,12 @@ module MatrixAdder (
     generate
         for (i = 0; i < 25; i = i + 1) begin : sum_and_check
             // Realiza a soma dos elementos de A e B e verifica se ocorreu overflow
-            assign sum[i] = matrix_A[(i * 8) +: 8] + matrix_B[(i * 8) +: 8];  // Soma de A e B
+            assign sum[i] = matrix_A[(i << 3) +: 8] + matrix_B[(i << 3) +: 8];  // Soma de A e B
             // Detecção de overflow: se os bits mais significativos de A e B são iguais,
             // e o bit de carry (bit 8) da soma for diferente do bit mais significativo de A,
             // então ocorreu overflow.
-            assign overflow_check[i] = (matrix_A[(i * 8) + 7] == matrix_B[(i * 8) + 7]) && 
-                                       (sum[i][8] != matrix_A[(i * 8) + 7]);
+            assign overflow_check[i] = (matrix_A[(i << 3) + 7] == matrix_B[(i << 3) + 7]) && 
+                                       (sum[i][8] != matrix_A[(i << 3) + 7]);
         end
     endgenerate
 
