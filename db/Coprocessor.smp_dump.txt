@@ -1,0 +1,16 @@
+
+State Machine - |MainCoprocessor|state
+Name state.11 state.10 state.01 state.00 
+state.00 0 0 0 0 
+state.01 0 0 1 1 
+state.10 0 1 0 1 
+state.11 1 0 0 1 
+
+State Machine - |MainCoprocessor|Coprocessor:uut|determinante_5x5:det_calculator|state
+Name state.SWAP_ROWS state.FIND_PIVOT state.DONE state.MULTIPLY state.ELIMINATION state.IDLE 
+state.IDLE 0 0 0 0 0 0 
+state.ELIMINATION 0 0 0 0 1 1 
+state.MULTIPLY 0 0 0 1 0 1 
+state.DONE 0 0 1 0 0 1 
+state.FIND_PIVOT 0 1 0 0 0 1 
+state.SWAP_ROWS 1 0 0 0 0 1 

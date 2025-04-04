@@ -2,11 +2,14 @@ module MainCoprocessor (
     input wire clk,          // Sinal de clock de entrada
     input wire reset,          // Sinal de reset para reiniciar a operação
     input wire button,       // Botão para controlar a execução do módulo
-    input [2:0] op_code,     // Código de operação (para determinar a operação a ser executada)
+        // Código de operação (para determinar a operação a ser executada)
     output wire overflow,    // Indicador de overflow
     output [1:0] LEDs        // LEDs para representar o estado do processo
 );
 
+	wire [2:0] op_code;
+	 
+	assign op_code = 001 ; 
 	
     // Declaração das variáveis de controle
     reg [6:0] mem_addr;      						// Endereço de memória (7 bits)
@@ -79,6 +82,8 @@ module MainCoprocessor (
             matrix_b_Send[i] = 1;  						// Incializa matriz_b com valores fixo de 1
         end
         mem_addr = 0;
+		  //valor colocado 
+		  state <= 0 ; 
     end
 	 
     // Bloco sempre ativado por borda de clock ou reset
@@ -183,7 +188,7 @@ module MainCoprocessor (
     end
 
     // Atribui o valor dos LEDs conforme o estado atual
-    assign LEDs = state;
+    assign LEDs = state ;
 	 assign rst = !reset;
 
 endmodule

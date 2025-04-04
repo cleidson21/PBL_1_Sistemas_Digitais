@@ -1,0 +1,342 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001958f4a5a80 .scope module, "tb_oposicao_matriz" "tb_oposicao_matriz" 2 5;
+ .timescale -9 -12;
+v000001958f5182c0_0 .var/i "i", 31 0;
+v000001958f518540_0 .var/i "j", 31 0;
+v000001958f5185e0_0 .net/s "m_oposta_A", 199 0, L_000001958f51cd90;  1 drivers
+v000001958f518680_0 .var/s "matrix_A", 199 0;
+S_000001958f4a5c10 .scope module, "uut" "oposicao_matriz" 2 11, 3 1 0, S_000001958f4a5a80;
+ .timescale 0 0;
+    .port_info 0 /INPUT 200 "matrix_A";
+    .port_info 1 /OUTPUT 200 "m_oposta_A";
+v000001958f5180e0_0 .net/s "m_oposta_A", 199 0, L_000001958f51cd90;  alias, 1 drivers
+v000001958f518180_0 .net/s "matrix_A", 199 0, v000001958f518680_0;  1 drivers
+L_000001958f5191c0 .part v000001958f518680_0, 0, 8;
+L_000001958f518720 .part v000001958f518680_0, 8, 8;
+L_000001958f51c570 .part v000001958f518680_0, 16, 8;
+L_000001958f51c7f0 .part v000001958f518680_0, 24, 8;
+L_000001958f51cc50 .part v000001958f518680_0, 32, 8;
+L_000001958f51d5b0 .part v000001958f518680_0, 40, 8;
+L_000001958f51d150 .part v000001958f518680_0, 48, 8;
+L_000001958f51d290 .part v000001958f518680_0, 56, 8;
+L_000001958f51e230 .part v000001958f518680_0, 64, 8;
+L_000001958f51d010 .part v000001958f518680_0, 72, 8;
+L_000001958f51e050 .part v000001958f518680_0, 80, 8;
+L_000001958f51c390 .part v000001958f518680_0, 88, 8;
+L_000001958f51c930 .part v000001958f518680_0, 96, 8;
+L_000001958f51d650 .part v000001958f518680_0, 104, 8;
+L_000001958f51de70 .part v000001958f518680_0, 112, 8;
+L_000001958f51c6b0 .part v000001958f518680_0, 120, 8;
+L_000001958f51c430 .part v000001958f518680_0, 128, 8;
+L_000001958f51c890 .part v000001958f518680_0, 136, 8;
+L_000001958f51d6f0 .part v000001958f518680_0, 144, 8;
+L_000001958f51d830 .part v000001958f518680_0, 152, 8;
+L_000001958f51c9d0 .part v000001958f518680_0, 160, 8;
+L_000001958f51db50 .part v000001958f518680_0, 168, 8;
+L_000001958f51df10 .part v000001958f518680_0, 176, 8;
+L_000001958f51cb10 .part v000001958f518680_0, 184, 8;
+LS_000001958f51cd90_0_0 .concat8 [ 8 8 8 8], L_000001958f518ea0, L_000001958f5187c0, L_000001958f51e0f0, L_000001958f51d3d0;
+LS_000001958f51cd90_0_4 .concat8 [ 8 8 8 8], L_000001958f51d1f0, L_000001958f51d330, L_000001958f51dab0, L_000001958f51e190;
+LS_000001958f51cd90_0_8 .concat8 [ 8 8 8 8], L_000001958f51cf70, L_000001958f51dfb0, L_000001958f51d8d0, L_000001958f51d510;
+LS_000001958f51cd90_0_12 .concat8 [ 8 8 8 8], L_000001958f51dc90, L_000001958f51c610, L_000001958f51c4d0, L_000001958f51dd30;
+LS_000001958f51cd90_0_16 .concat8 [ 8 8 8 8], L_000001958f51c750, L_000001958f51ca70, L_000001958f51d790, L_000001958f51d470;
+LS_000001958f51cd90_0_20 .concat8 [ 8 8 8 8], L_000001958f51d970, L_000001958f51ccf0, L_000001958f51d0b0, L_000001958f51cbb0;
+LS_000001958f51cd90_0_24 .concat8 [ 8 0 0 0], L_000001958f51ddd0;
+LS_000001958f51cd90_1_0 .concat8 [ 32 32 32 32], LS_000001958f51cd90_0_0, LS_000001958f51cd90_0_4, LS_000001958f51cd90_0_8, LS_000001958f51cd90_0_12;
+LS_000001958f51cd90_1_4 .concat8 [ 32 32 8 0], LS_000001958f51cd90_0_16, LS_000001958f51cd90_0_20, LS_000001958f51cd90_0_24;
+L_000001958f51cd90 .concat8 [ 128 72 0 0], LS_000001958f51cd90_1_0, LS_000001958f51cd90_1_4;
+L_000001958f51ce30 .part v000001958f518680_0, 192, 8;
+S_000001958f4a5da0 .scope generate, "inverter_elementos[0]" "inverter_elementos[0]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bbd10 .param/l "i" 0 3 8, +C4<00>;
+v000001958f4aff90_0 .net *"_ivl_0", 7 0, L_000001958f5191c0;  1 drivers
+L_000001958f5f0088 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4b0170_0 .net *"_ivl_1", 7 0, L_000001958f5f0088;  1 drivers
+v000001958f4aecd0_0 .net *"_ivl_4", 7 0, L_000001958f518ea0;  1 drivers
+L_000001958f518ea0 .arith/sub 8, L_000001958f5f0088, L_000001958f5191c0;
+S_000001958f472770 .scope generate, "inverter_elementos[1]" "inverter_elementos[1]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bbd50 .param/l "i" 0 3 8, +C4<01>;
+v000001958f4af590_0 .net *"_ivl_0", 7 0, L_000001958f518720;  1 drivers
+L_000001958f5f00d0 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4aeeb0_0 .net *"_ivl_1", 7 0, L_000001958f5f00d0;  1 drivers
+v000001958f4b02b0_0 .net *"_ivl_4", 7 0, L_000001958f5187c0;  1 drivers
+L_000001958f5187c0 .arith/sub 8, L_000001958f5f00d0, L_000001958f518720;
+S_000001958f472900 .scope generate, "inverter_elementos[2]" "inverter_elementos[2]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bbdd0 .param/l "i" 0 3 8, +C4<010>;
+v000001958f4aef50_0 .net *"_ivl_0", 7 0, L_000001958f51c570;  1 drivers
+L_000001958f5f0118 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4aeff0_0 .net *"_ivl_1", 7 0, L_000001958f5f0118;  1 drivers
+v000001958f4af270_0 .net *"_ivl_4", 7 0, L_000001958f51e0f0;  1 drivers
+L_000001958f51e0f0 .arith/sub 8, L_000001958f5f0118, L_000001958f51c570;
+S_000001958f472a90 .scope generate, "inverter_elementos[3]" "inverter_elementos[3]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bbe90 .param/l "i" 0 3 8, +C4<011>;
+v000001958f4b03f0_0 .net *"_ivl_0", 7 0, L_000001958f51c7f0;  1 drivers
+L_000001958f5f0160 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4af310_0 .net *"_ivl_1", 7 0, L_000001958f5f0160;  1 drivers
+v000001958f4afd10_0 .net *"_ivl_4", 7 0, L_000001958f51d3d0;  1 drivers
+L_000001958f51d3d0 .arith/sub 8, L_000001958f5f0160, L_000001958f51c7f0;
+S_000001958f5169c0 .scope generate, "inverter_elementos[4]" "inverter_elementos[4]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc150 .param/l "i" 0 3 8, +C4<0100>;
+v000001958f4af3b0_0 .net *"_ivl_0", 7 0, L_000001958f51cc50;  1 drivers
+L_000001958f5f01a8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4af6d0_0 .net *"_ivl_1", 7 0, L_000001958f5f01a8;  1 drivers
+v000001958f4b0530_0 .net *"_ivl_4", 7 0, L_000001958f51d1f0;  1 drivers
+L_000001958f51d1f0 .arith/sub 8, L_000001958f5f01a8, L_000001958f51cc50;
+S_000001958f516b50 .scope generate, "inverter_elementos[5]" "inverter_elementos[5]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc210 .param/l "i" 0 3 8, +C4<0101>;
+v000001958f4b05d0_0 .net *"_ivl_0", 7 0, L_000001958f51d5b0;  1 drivers
+L_000001958f5f01f0 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4afbd0_0 .net *"_ivl_1", 7 0, L_000001958f5f01f0;  1 drivers
+v000001958f4b08f0_0 .net *"_ivl_4", 7 0, L_000001958f51d330;  1 drivers
+L_000001958f51d330 .arith/sub 8, L_000001958f5f01f0, L_000001958f51d5b0;
+S_000001958f5170f0 .scope generate, "inverter_elementos[6]" "inverter_elementos[6]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bb910 .param/l "i" 0 3 8, +C4<0110>;
+v000001958f4af130_0 .net *"_ivl_0", 7 0, L_000001958f51d150;  1 drivers
+L_000001958f5f0238 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4af770_0 .net *"_ivl_1", 7 0, L_000001958f5f0238;  1 drivers
+v000001958f4af810_0 .net *"_ivl_4", 7 0, L_000001958f51dab0;  1 drivers
+L_000001958f51dab0 .arith/sub 8, L_000001958f5f0238, L_000001958f51d150;
+S_000001958f517280 .scope generate, "inverter_elementos[7]" "inverter_elementos[7]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc350 .param/l "i" 0 3 8, +C4<0111>;
+v000001958f4b0990_0 .net *"_ivl_0", 7 0, L_000001958f51d290;  1 drivers
+L_000001958f5f0280 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4afc70_0 .net *"_ivl_1", 7 0, L_000001958f5f0280;  1 drivers
+v000001958f4af950_0 .net *"_ivl_4", 7 0, L_000001958f51e190;  1 drivers
+L_000001958f51e190 .arith/sub 8, L_000001958f5f0280, L_000001958f51d290;
+S_000001958f517410 .scope generate, "inverter_elementos[8]" "inverter_elementos[8]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc190 .param/l "i" 0 3 8, +C4<01000>;
+v000001958f4b0670_0 .net *"_ivl_0", 7 0, L_000001958f51e230;  1 drivers
+L_000001958f5f02c8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4b07b0_0 .net *"_ivl_1", 7 0, L_000001958f5f02c8;  1 drivers
+v000001958f4b0a30_0 .net *"_ivl_4", 7 0, L_000001958f51cf70;  1 drivers
+L_000001958f51cf70 .arith/sub 8, L_000001958f5f02c8, L_000001958f51e230;
+S_000001958f5175a0 .scope generate, "inverter_elementos[9]" "inverter_elementos[9]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc410 .param/l "i" 0 3 8, +C4<01001>;
+v000001958f4a1280_0 .net *"_ivl_0", 7 0, L_000001958f51d010;  1 drivers
+L_000001958f5f0310 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4a1320_0 .net *"_ivl_1", 7 0, L_000001958f5f0310;  1 drivers
+v000001958f4a0920_0 .net *"_ivl_4", 7 0, L_000001958f51dfb0;  1 drivers
+L_000001958f51dfb0 .arith/sub 8, L_000001958f5f0310, L_000001958f51d010;
+S_000001958f517730 .scope generate, "inverter_elementos[10]" "inverter_elementos[10]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc490 .param/l "i" 0 3 8, +C4<01010>;
+v000001958f4a0b00_0 .net *"_ivl_0", 7 0, L_000001958f51e050;  1 drivers
+L_000001958f5f0358 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4a1460_0 .net *"_ivl_1", 7 0, L_000001958f5f0358;  1 drivers
+v000001958f4a0d80_0 .net *"_ivl_4", 7 0, L_000001958f51d8d0;  1 drivers
+L_000001958f51d8d0 .arith/sub 8, L_000001958f5f0358, L_000001958f51e050;
+S_000001958f5178c0 .scope generate, "inverter_elementos[11]" "inverter_elementos[11]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc1d0 .param/l "i" 0 3 8, +C4<01011>;
+v000001958f4a1640_0 .net *"_ivl_0", 7 0, L_000001958f51c390;  1 drivers
+L_000001958f5f03a0 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f4a0ec0_0 .net *"_ivl_1", 7 0, L_000001958f5f03a0;  1 drivers
+v000001958f5196c0_0 .net *"_ivl_4", 7 0, L_000001958f51d510;  1 drivers
+L_000001958f51d510 .arith/sub 8, L_000001958f5f03a0, L_000001958f51c390;
+S_000001958f519a60 .scope generate, "inverter_elementos[12]" "inverter_elementos[12]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bb8d0 .param/l "i" 0 3 8, +C4<01100>;
+v000001958f518fe0_0 .net *"_ivl_0", 7 0, L_000001958f51c930;  1 drivers
+L_000001958f5f03e8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518b80_0 .net *"_ivl_1", 7 0, L_000001958f5f03e8;  1 drivers
+v000001958f519080_0 .net *"_ivl_4", 7 0, L_000001958f51dc90;  1 drivers
+L_000001958f51dc90 .arith/sub 8, L_000001958f5f03e8, L_000001958f51c930;
+S_000001958f519bf0 .scope generate, "inverter_elementos[13]" "inverter_elementos[13]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc290 .param/l "i" 0 3 8, +C4<01101>;
+v000001958f517d20_0 .net *"_ivl_0", 7 0, L_000001958f51d650;  1 drivers
+L_000001958f5f0430 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f5193a0_0 .net *"_ivl_1", 7 0, L_000001958f5f0430;  1 drivers
+v000001958f518c20_0 .net *"_ivl_4", 7 0, L_000001958f51c610;  1 drivers
+L_000001958f51c610 .arith/sub 8, L_000001958f5f0430, L_000001958f51d650;
+S_000001958f519d80 .scope generate, "inverter_elementos[14]" "inverter_elementos[14]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bb950 .param/l "i" 0 3 8, +C4<01110>;
+v000001958f517f00_0 .net *"_ivl_0", 7 0, L_000001958f51de70;  1 drivers
+L_000001958f5f0478 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518040_0 .net *"_ivl_1", 7 0, L_000001958f5f0478;  1 drivers
+v000001958f519800_0 .net *"_ivl_4", 7 0, L_000001958f51c4d0;  1 drivers
+L_000001958f51c4d0 .arith/sub 8, L_000001958f5f0478, L_000001958f51de70;
+S_000001958f51a280 .scope generate, "inverter_elementos[15]" "inverter_elementos[15]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc3d0 .param/l "i" 0 3 8, +C4<01111>;
+v000001958f519260_0 .net *"_ivl_0", 7 0, L_000001958f51c6b0;  1 drivers
+L_000001958f5f04c0 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518cc0_0 .net *"_ivl_1", 7 0, L_000001958f5f04c0;  1 drivers
+v000001958f5184a0_0 .net *"_ivl_4", 7 0, L_000001958f51dd30;  1 drivers
+L_000001958f51dd30 .arith/sub 8, L_000001958f5f04c0, L_000001958f51c6b0;
+S_000001958f51a410 .scope generate, "inverter_elementos[16]" "inverter_elementos[16]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bba90 .param/l "i" 0 3 8, +C4<010000>;
+v000001958f519760_0 .net *"_ivl_0", 7 0, L_000001958f51c430;  1 drivers
+L_000001958f5f0508 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f519300_0 .net *"_ivl_1", 7 0, L_000001958f5f0508;  1 drivers
+v000001958f519440_0 .net *"_ivl_4", 7 0, L_000001958f51c750;  1 drivers
+L_000001958f51c750 .arith/sub 8, L_000001958f5f0508, L_000001958f51c430;
+S_000001958f51a5a0 .scope generate, "inverter_elementos[17]" "inverter_elementos[17]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bbad0 .param/l "i" 0 3 8, +C4<010001>;
+v000001958f517aa0_0 .net *"_ivl_0", 7 0, L_000001958f51c890;  1 drivers
+L_000001958f5f0550 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518f40_0 .net *"_ivl_1", 7 0, L_000001958f5f0550;  1 drivers
+v000001958f518a40_0 .net *"_ivl_4", 7 0, L_000001958f51ca70;  1 drivers
+L_000001958f51ca70 .arith/sub 8, L_000001958f5f0550, L_000001958f51c890;
+S_000001958f51aa50 .scope generate, "inverter_elementos[18]" "inverter_elementos[18]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc590 .param/l "i" 0 3 8, +C4<010010>;
+v000001958f519120_0 .net *"_ivl_0", 7 0, L_000001958f51d6f0;  1 drivers
+L_000001958f5f0598 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518360_0 .net *"_ivl_1", 7 0, L_000001958f5f0598;  1 drivers
+v000001958f5194e0_0 .net *"_ivl_4", 7 0, L_000001958f51d790;  1 drivers
+L_000001958f51d790 .arith/sub 8, L_000001958f5f0598, L_000001958f51d6f0;
+S_000001958f51abe0 .scope generate, "inverter_elementos[19]" "inverter_elementos[19]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc610 .param/l "i" 0 3 8, +C4<010011>;
+v000001958f518d60_0 .net *"_ivl_0", 7 0, L_000001958f51d830;  1 drivers
+L_000001958f5f05e0 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518860_0 .net *"_ivl_1", 7 0, L_000001958f5f05e0;  1 drivers
+v000001958f518400_0 .net *"_ivl_4", 7 0, L_000001958f51d470;  1 drivers
+L_000001958f51d470 .arith/sub 8, L_000001958f5f05e0, L_000001958f51d830;
+S_000001958f51ad70 .scope generate, "inverter_elementos[20]" "inverter_elementos[20]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc650 .param/l "i" 0 3 8, +C4<010100>;
+v000001958f517b40_0 .net *"_ivl_0", 7 0, L_000001958f51c9d0;  1 drivers
+L_000001958f5f0628 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f518220_0 .net *"_ivl_1", 7 0, L_000001958f5f0628;  1 drivers
+v000001958f5189a0_0 .net *"_ivl_4", 7 0, L_000001958f51d970;  1 drivers
+L_000001958f51d970 .arith/sub 8, L_000001958f5f0628, L_000001958f51c9d0;
+S_000001958f51a0f0 .scope generate, "inverter_elementos[21]" "inverter_elementos[21]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4bc6d0 .param/l "i" 0 3 8, +C4<010101>;
+v000001958f518e00_0 .net *"_ivl_0", 7 0, L_000001958f51db50;  1 drivers
+L_000001958f5f0670 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f519580_0 .net *"_ivl_1", 7 0, L_000001958f5f0670;  1 drivers
+v000001958f519620_0 .net *"_ivl_4", 7 0, L_000001958f51ccf0;  1 drivers
+L_000001958f51ccf0 .arith/sub 8, L_000001958f5f0670, L_000001958f51db50;
+S_000001958f519f60 .scope generate, "inverter_elementos[22]" "inverter_elementos[22]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4b5300 .param/l "i" 0 3 8, +C4<010110>;
+v000001958f517e60_0 .net *"_ivl_0", 7 0, L_000001958f51df10;  1 drivers
+L_000001958f5f06b8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f5198a0_0 .net *"_ivl_1", 7 0, L_000001958f5f06b8;  1 drivers
+v000001958f519940_0 .net *"_ivl_4", 7 0, L_000001958f51d0b0;  1 drivers
+L_000001958f51d0b0 .arith/sub 8, L_000001958f5f06b8, L_000001958f51df10;
+S_000001958f51a730 .scope generate, "inverter_elementos[23]" "inverter_elementos[23]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4b5fc0 .param/l "i" 0 3 8, +C4<010111>;
+v000001958f518900_0 .net *"_ivl_0", 7 0, L_000001958f51cb10;  1 drivers
+L_000001958f5f0700 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f517be0_0 .net *"_ivl_1", 7 0, L_000001958f5f0700;  1 drivers
+v000001958f517c80_0 .net *"_ivl_4", 7 0, L_000001958f51cbb0;  1 drivers
+L_000001958f51cbb0 .arith/sub 8, L_000001958f5f0700, L_000001958f51cb10;
+S_000001958f51a8c0 .scope generate, "inverter_elementos[24]" "inverter_elementos[24]" 3 8, 3 8 0, S_000001958f4a5c10;
+ .timescale 0 0;
+P_000001958f4b5dc0 .param/l "i" 0 3 8, +C4<011000>;
+v000001958f518ae0_0 .net *"_ivl_0", 7 0, L_000001958f51ce30;  1 drivers
+L_000001958f5f0748 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v000001958f517dc0_0 .net *"_ivl_1", 7 0, L_000001958f5f0748;  1 drivers
+v000001958f517fa0_0 .net *"_ivl_4", 7 0, L_000001958f51ddd0;  1 drivers
+L_000001958f51ddd0 .arith/sub 8, L_000001958f5f0748, L_000001958f51ce30;
+    .scope S_000001958f4a5a80;
+T_0 ;
+    %vpi_call 2 19 "$display", "Iniciando Teste da Oposi\303\247\303\243o de Matriz" {0 0 0};
+    %pushi/vec4 2164359682, 0, 39;
+    %concati/vec4 2198045700, 0, 32;
+    %concati/vec4 2231731718, 0, 32;
+    %concati/vec4 2265417736, 0, 32;
+    %concati/vec4 2299103754, 0, 32;
+    %concati/vec4 2332789772, 0, 32;
+    %concati/vec4 1, 0, 1;
+    %store/vec4 v000001958f518680_0, 0, 200;
+    %delay 10000, 0;
+    %vpi_call 2 32 "$display", "Matriz Original (5x5):" {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000001958f5182c0_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v000001958f5182c0_0;
+    %cmpi/s 5, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000001958f518540_0, 0, 32;
+T_0.2 ;
+    %load/vec4 v000001958f518540_0;
+    %cmpi/s 5, 0, 32;
+    %jmp/0xz T_0.3, 5;
+    %load/vec4 v000001958f518680_0;
+    %load/vec4 v000001958f5182c0_0;
+    %muli 5, 0, 32;
+    %load/vec4 v000001958f518540_0;
+    %add;
+    %muli 8, 0, 32;
+    %part/s 8;
+    %vpi_call 2 35 "$write", "%4d ", S<0,vec4,u8> {1 0 0};
+    %load/vec4 v000001958f518540_0;
+    %addi 1, 0, 32;
+    %store/vec4 v000001958f518540_0, 0, 32;
+    %jmp T_0.2;
+T_0.3 ;
+    %vpi_call 2 37 "$display" {0 0 0};
+    %load/vec4 v000001958f5182c0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v000001958f5182c0_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %vpi_call 2 40 "$display", "Matriz Oposta (5x5):" {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000001958f5182c0_0, 0, 32;
+T_0.4 ;
+    %load/vec4 v000001958f5182c0_0;
+    %cmpi/s 5, 0, 32;
+    %jmp/0xz T_0.5, 5;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000001958f518540_0, 0, 32;
+T_0.6 ;
+    %load/vec4 v000001958f518540_0;
+    %cmpi/s 5, 0, 32;
+    %jmp/0xz T_0.7, 5;
+    %load/vec4 v000001958f5185e0_0;
+    %load/vec4 v000001958f5182c0_0;
+    %muli 5, 0, 32;
+    %load/vec4 v000001958f518540_0;
+    %add;
+    %muli 8, 0, 32;
+    %part/s 8;
+    %vpi_call 2 43 "$write", "%4d ", S<0,vec4,u8> {1 0 0};
+    %load/vec4 v000001958f518540_0;
+    %addi 1, 0, 32;
+    %store/vec4 v000001958f518540_0, 0, 32;
+    %jmp T_0.6;
+T_0.7 ;
+    %vpi_call 2 45 "$display" {0 0 0};
+    %load/vec4 v000001958f5182c0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v000001958f5182c0_0, 0, 32;
+    %jmp T_0.4;
+T_0.5 ;
+    %vpi_call 2 48 "$display", "Teste conclu\303\255do!" {0 0 0};
+    %vpi_call 2 49 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_oposicao_matriz.v";
+    "oposicao_matriz.v";
