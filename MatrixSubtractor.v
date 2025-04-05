@@ -1,7 +1,7 @@
 module MatrixSubtractor (
     input signed [199:0] matrix_A,  // Matriz A de entrada (25 elementos de 8 bits)
     input signed [199:0] matrix_B,  // Matriz B de entrada (25 elementos de 8 bits)
-    output reg [199:0] result_out,  // Resultado da subtração de A e B
+    output reg signed [199:0] result_out,  // Resultado da subtração de A e B
     output reg overflow             // Flag de overflow (indica se ocorreu overflow)
 );
 

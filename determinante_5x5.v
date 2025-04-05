@@ -3,12 +3,12 @@ module determinante_5x5 (
     input wire clk,
     input wire reset,
     input wire start,
-    input wire [7:0] matrix_00, matrix_01, matrix_02, matrix_03, matrix_04,
-    input wire [7:0] matrix_10, matrix_11, matrix_12, matrix_13, matrix_14,
-    input wire [7:0] matrix_20, matrix_21, matrix_22, matrix_23, matrix_24,
-    input wire [7:0] matrix_30, matrix_31, matrix_32, matrix_33, matrix_34,
-    input wire [7:0] matrix_40, matrix_41, matrix_42, matrix_43, matrix_44,
-    output reg [39:0] determinant,
+    input wire signed [7:0] matrix_00, matrix_01, matrix_02, matrix_03, matrix_04,
+    input wire signed [7:0] matrix_10, matrix_11, matrix_12, matrix_13, matrix_14,
+    input wire signed [7:0] matrix_20, matrix_21, matrix_22, matrix_23, matrix_24,
+    input wire signed [7:0] matrix_30, matrix_31, matrix_32, matrix_33, matrix_34,
+    input wire signed [7:0] matrix_40, matrix_41, matrix_42, matrix_43, matrix_44,
+    output reg signed [39:0] determinant,
     output reg done
 );
 
