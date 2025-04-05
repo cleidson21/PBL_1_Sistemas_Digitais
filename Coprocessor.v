@@ -174,7 +174,6 @@ module Coprocessor (
 					end
 					else begin
 						index <= 0;
-						mem_addr <= 25;
 						Counter_wait <= 0;
 						mem_we <= 1;
 						state <= S5_WAIT_PROCESS;
@@ -195,7 +194,7 @@ module Coprocessor (
 				// Estado 6: Escrita dos resultados
 				S6_WRITE_RESULT: begin // 110
 					mem_data_in <= {8'b0, matrix_Result[index]};
-					mem_addr <= 25 + index; // Escreve de 25 a 49
+					mem_addr <= mem_addr + index; // Escreve de 25 a 49
 					index <= index + 1;
 					if (index >= 25) begin
 						mem_we <= 0;
