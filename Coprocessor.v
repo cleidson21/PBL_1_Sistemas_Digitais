@@ -5,7 +5,6 @@ module Coprocessor (
 	input wire test,
 	input wire [2:0] op_code,    // Código de operação (para determinar a operação a ser executada)
 	output wire overflow,    		// Indicador de overflow
-	output [2:0] LEDs,        		// LEDs para representar o estado do processo
 	output reg [6:0] Display0,
 	output reg [6:0] Display1,
 	output [4:0] LEDsContador
@@ -34,7 +33,7 @@ module Coprocessor (
 	reg [199:0] matrix_a_Receive;    		  // Matriz A para processamento (199 bits)
 	reg [199:0] matrix_b_Receive;            // Matriz B para processamento (199 bits)
 	reg signed [7:0] matrix_Result [0:24];   // Resultado da multiplicação das matrizes
-	wire signed [199:0] matrix_out;          // Resultado final do coprocessador
+	wire [199:0] matrix_out;          // Resultado final do coprocessador
 	 
 	// Definindo estados da FSM
 	localparam S0_INIT_WRITE   = 3'b000;
@@ -170,7 +169,7 @@ module Coprocessor (
 				// Estado 4: Processamento
 				S4_PROCESS: begin // 100
 					if (index < 25)  begin
-						matrix_Result[index] <= matrix_out[index*8 +: 8];
+						matrix_Result[index] <= $signed(matrix_out[index*8 +: 8]);
 						index <= index + 1;
 					end
 					else begin
@@ -218,7 +217,6 @@ module Coprocessor (
 
 
 	// Atribui o valor dos LEDs conforme o estado atual
-	assign LEDs = state ;
 	assign rst = !reset;
 	assign LEDsContador = index_display;
 
