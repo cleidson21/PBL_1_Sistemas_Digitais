@@ -39,10 +39,10 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY Coprocessor
+set_global_assignment -name TOP_LEVEL_ENTITY determinante_2x2
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:28:20  MARCH 26, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -83,9 +83,6 @@ set_location_assignment PIN_W20 -to LEDsContador[3]
 set_location_assignment PIN_Y19 -to LEDsContador[2]
 set_location_assignment PIN_W19 -to LEDsContador[1]
 set_location_assignment PIN_W17 -to LEDsContador[0]
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_V17 -to LEDs[2]
 set_global_assignment -name QIP_FILE MemoryBlock.qip
 set_global_assignment -name VERILOG_FILE Coprocessor.v
@@ -95,5 +92,9 @@ set_global_assignment -name VERILOG_FILE MatrixSubtractor.v
 set_global_assignment -name VERILOG_FILE transposicao_matriz.v
 set_global_assignment -name VERILOG_FILE oposicao_matriz.v
 set_global_assignment -name VERILOG_FILE multiplicacao_num_matriz.v
-set_global_assignment -name VERILOG_FILE determinante_5x5.v
+set_global_assignment -name VERILOG_FILE determinante_2x2.v
+set_global_assignment -name VERILOG_FILE determinante_3x3.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
