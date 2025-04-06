@@ -85,12 +85,22 @@ module Coprocessor (
 		matrix_b_Send[20] = 15; matrix_b_Send[21] = 25;  matrix_b_Send[22] = 7;   matrix_b_Send[23] = 63;  matrix_b_Send[24] = 12;
 	end*/
 
+	reg [2:0] matrix_size = 5; // Pode ser 2, 3, 4 ou 5 — define tamanho da matriz NxN
 	// Criação de Matriz teste para operações
 	initial begin
-		integer i;
-		for (i = 0; i < 25; i = i + 1) begin
-			matrix_a_Send[i] = i + 1;					// Inicializa matriz_a com valores de 1 a 25	
-			matrix_b_Send[i] = 1;  						// Incializa matriz_b com valores fixo de 1
+		integer i, j, k;
+		k = 1;
+		for (i = 0; i < 5; i = i + 1) begin
+			for (j = 0; j < 5; j = j + 1) begin
+				if (i < matrix_size && j < matrix_size) begin
+					matrix_a_Send[i*5 + j] = k; // valores incrementais (1, 2, 3...)
+					matrix_b_Send[i*5 + j] = 1; // valor constante para teste
+					k = k + 1;
+				end else begin
+					matrix_a_Send[i*5 + j] = 0; // preenche com zeros
+					matrix_b_Send[i*5 + j] = 0;
+				end
+			end
 		end
 	end
 
