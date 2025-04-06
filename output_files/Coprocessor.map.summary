@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Sun Apr  6 20:10:43 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : Coprocessor
+Top-level Entity Name : Coprocessor
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 1674
+Total pins : 27
+Total virtual pins : 0
+Total block memory bits : 1,024
+Total DSP Blocks : 26
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0
+Total DLLs : 0

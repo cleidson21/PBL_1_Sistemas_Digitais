@@ -1,0 +1,19 @@
+
+State Machine - |Coprocessor|state
+Name state.S7_DONE state.S6_WRITE_RESULT state.S5_WAIT_PROCESS state.S4_PROCESS state.S3_WAIT_READ state.S2_READ_MEM state.S1_WAIT_WRITE state.000 
+state.000 0 0 0 0 0 0 0 0 
+state.S1_WAIT_WRITE 0 0 0 0 0 0 1 1 
+state.S2_READ_MEM 0 0 0 0 0 1 0 1 
+state.S3_WAIT_READ 0 0 0 0 1 0 0 1 
+state.S4_PROCESS 0 0 0 1 0 0 0 1 
+state.S5_WAIT_PROCESS 0 0 1 0 0 0 0 1 
+state.S6_WRITE_RESULT 0 1 0 0 0 0 0 1 
+state.S7_DONE 1 0 0 0 0 0 0 1 
+
+State Machine - |Coprocessor|Alu:uut|multiplicacao:matrix_multiplier|estado
+Name estado.STORE estado.MULTIPLY estado.LOAD estado.IDLE estado.DONE 
+estado.IDLE 0 0 0 0 0 
+estado.LOAD 0 0 1 1 0 
+estado.MULTIPLY 0 1 0 1 0 
+estado.STORE 1 0 0 1 0 
+estado.DONE 0 0 0 1 1 
