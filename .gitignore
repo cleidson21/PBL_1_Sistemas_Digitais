@@ -1,0 +1,24 @@
+# Ignorar arquivos e pastas geradas pelo Quartus
+db/
+incremental_db/
+output_files/
+*.rpt
+*.smsg
+*.log
+*.bak
+*.chg
+*.jdi
+
+# Ignorar configurações locais de IDEs
+*.swp
+*.swo
+*.tmp
+*~
+
+# Ignorar arquivos de backup
+*.bak
+*.old
+
+# Ignorar arquivos de simulação (caso sejam gerados automaticamente)
+*.vcd
+*.wlf
