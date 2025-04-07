@@ -1,5 +1,6 @@
 module Alu (
     input wire [2:0] op_code,
+	 input wire [1:0] matrix_size,
     input signed [199:0] matrix_a,
     input signed [199:0] matrix_b,
     input signed [7:0] scalar,
@@ -58,6 +59,16 @@ module Alu (
         .done(matrix_mult_done),
         .overflow_global(overflow_matrix_mult)
     );
+	
+	 // Módulo para o cálculo do determinante
+	 ula_determinante determinante_matriz (
+    .clk(clk),
+    .matriz(matrix_a),
+    .tamanho_matriz(matrix_size[1:0])
+    .det(determinant_result),
+    .done(determinant_done)
+);
+
 
     // Lógica para seleção de operação
     always @(*) begin
