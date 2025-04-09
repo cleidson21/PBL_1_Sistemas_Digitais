@@ -67,7 +67,32 @@ O Icarus Verilog foi utilizado como ferramenta de simulação funcional durante 
 *Descrever o funcionamento do módulo `coprocessador`*
 
 ## Bloco de Memória
-*Descrever o funcionamento do bloco de memória `memory_block`*
+A RAM de 1 porta é composta pelos seguintes sinais fundamentais:
+Endereço (address): especifica a posição de memória a ser acessada.
+
+
+Dado de entrada (data): representa a informação a ser armazenada na memória, no caso de uma escrita.
+
+
+Dado de saída (q): fornece o conteúdo da posição de memória solicitada, no caso de uma leitura.
+
+
+Clock: sinal de sincronismo responsável por coordenar as operações internas.
+
+
+Write Enable (wren): sinal de habilitação de escrita; quando ativo (nível lógico alto), permite que o dado na entrada seja escrito na posição de memória indicada.
+
+
+O comportamento da RAM segue a lógica síncrona típica: a cada borda de subida do sinal de clock, a operação realizada depende do estado do sinal wren. Se o sinal estiver ativo, o valor presente na entrada data é armazenado na posição indicada por address. Caso contrário, a memória permanece em modo de leitura, e o valor armazenado na posição especificada é apresentado na saída q , o que em nosso sistema ocorre de modo imediato sem haver uma sincronização com o clock de armazenamento.
+
+Aplicação em FPGA
+Internamente, ao instanciar uma RAM de 1 porta que faz parte do IP Catalog no Quartus, o compilador mapeia automaticamente essa estrutura para os blocos de memória dedicados presentes na arquitetura física da FPGA. Esses blocos são otimizados para operações de leitura e escrita em alta velocidade, oferecendo acesso eficiente com baixo consumo de lógica programável.
+Além disso, por meio da aba Tools > In-System Memory Content Editor, é possível visualizar e interagir com o conteúdo da memória durante a execução, o que facilita a análise e depuração do sistema.
+Essas características nos impulsionaram a utilizar essa memória em detrimento de registradores comuns, que são construídos em Verilog a partir da criação de variáveis explícitas . 
+
+Configuração Utilizada
+O módulo Memory Block (RAM 1-Port) foi configurado para conter 4 words de 16 bits cada . 
+
 
 ## ULA (Unidade Lógica e Aritmética)
 
