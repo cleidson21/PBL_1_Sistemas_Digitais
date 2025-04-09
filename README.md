@@ -63,16 +63,38 @@ O Icarus Verilog foi utilizado como ferramenta de simulação funcional durante 
 
 ## Desenvolvimento e Arquitetura do Sistema
 
-## Unidade de Controle de Operações Matriciais
-*Descrever o funcionamento do módulo `coprocessador`*
+## Cooprocessor 
+1- Coprocessor 
+ O  cooprocessor  é responsável por coordenar operações entre blocos internos do sistema, garantindo a execução paralela e eficiente de cálculos envolvendo matrizes. Embora o sistema opere com apenas quatro operações atômicas, a máquina de estados implementada conta com um número maior de estados, o que é necessário para garantir sincronização, estabilidade e funcionamento confiável mesmo em altas frequências de clock.
+A máquina de estados implementada é composta por 7 estados , organizados de forma sequencial e lógica, contemplando as fases de escrita na memória, leitura dos dados, execução da operação selecionada e gravação dos resultados  , entre cada processo desse existe um estado extra para evitar que erros ocorram com a ultilização da memória . A comunicação com a memória é feita por meio de sinais de controle, incluindo variáveis de write enable e data bus .
+
+2. Escrita na Memória (Estado 1)
+Inicialmente, é necessário carregar os valores das matrizes na memória. Esse processo começa com a pré-carga dos dados na FPGA, que são então enviados para a memória por meio do registrador data, o qual se conecta diretamente ao módulo de memória.
+
+A variável de controle responsável pela escrita é ativada (setada em ‘1’), habilitando o modo de escrita na memória. A transmissão dos dados ocorre de forma paralela, ou seja, os valores correspondentes das duas matrizes são enviados simultaneamente para a memória, ocupando posições específicas.
+
+Para garantir a integridade da operação, o sistema permanece em espera por alguns ciclos (estado de controle), permitindo a sincronização dos dados antes de desativar o write enable e prosseguir com a próxima etapa.
+
+3. Leitura da Memória (Estados 3 e 4)
+Nos estados seguintes, ocorre o processo inverso: a leitura dos dados armazenados. Com o sinal de write enable desativado (indicando modo de leitura), o módulo captura os dados das matrizes também de forma paralela, byte a byte.
+
+Novamente, é introduzido um estado de controle adicional, garantindo que os valores capturados não apresentem inconsistências antes de serem enviados aos módulos responsáveis pelas operações.
+
+4. Execução da Operação (Estados 5 e 6)
+A operação a ser realizada é escolhida de forma prévia por meio de um opcode. No estado 5, os dados já extraídos da memória são processados por unidades operacionais específicas (ex: adição, subtração, multiplicação, etc.), onde todas as operações ocorrem em paralelo.
+
+No entanto, apenas o resultado da operação correspondente ao opcode é selecionado e armazenado em um vetor de saída.
+
+O estado 6 age como buffer de controle, aguardando o tempo necessário antes de habilitar a escrita do resultado final na memória.
+
+5. Escrita dos Resultados na Memória
+Com os resultados armazenados em um registrador de saída, o coprocessador ativa novamente o sinal de write enable, desta vez para armazenar o resultado final na memória. A escrita ocorre de forma ordenada e paralela, respeitando o posicionamento original das matrizes.
 
 ## Bloco de Memória
 A RAM de 1 porta é composta pelos seguintes sinais fundamentais:
 Endereço (address): especifica a posição de memória a ser acessada.
 
-
 Dado de entrada (data): representa a informação a ser armazenada na memória, no caso de uma escrita.
-
 
 Dado de saída (q): fornece o conteúdo da posição de memória solicitada, no caso de uma leitura.
 
