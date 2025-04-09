@@ -2,7 +2,7 @@ module Coprocessor (
 	input wire clk,	          		// Sinal de clock de entrada
 	input wire reset,	          		// Sinal de reset para reiniciar a operação
 	input wire button,	      		// Botão para controlar a execução do módulo
-	input wire [2:0] op_code,	    	// Código de operação (para determinar a operação a ser executada)
+	input wire [2:0] op_code	    	// Código de operação (para determinar a operação a ser executada)
 ); 	
 	
 	// Declaração das variáveis de controle
