@@ -1,9 +1,9 @@
-# RELATÓRIO - COPROCESSADOR PARA OPERAÇÕES MATRICIAIS EM FPGA
+# Coprocessador para Operações Matriciais em FPGA
 
 ## Sumário
 
 - [Introdução](#introdução)
-- [Requisitos do problema](#requisitos-do-problema)
+- [Requisitos do Problema](#requisitos-do-problema)
 - [Recursos Utilizados](#recursos-utilizados)
   - [Quartus Prime](#quartus-prime)
   - [FPGA DE1-SoC](#fpga-de1-soc)
@@ -15,106 +15,145 @@
 - [Referências](#referências)
 
 ## Introdução
-O processamento de matrizes constitui um componente essencial em uma ampla gama de aplicações computacionais, como sistemas embarcados, algoritmos de aprendizado de máquina, visão computacional, computação gráfica, simulações numéricas e controle de sistemas dinâmicos. A manipulação eficiente de estruturas matriciais exige arquiteturas capazes de realizar operações aritméticas com paralelismo e desempenho adequados.
 
-Neste projeto, desenvolve-se um co-processador aritmético especializado em operações matriciais, implementado em linguagem de descrição de hardware Verilog HDL. O sistema é capaz de executar, de forma autônoma, operações como adição, subtração, multiplicação e cálculo de determinantes de matrizes 2x2 e 3x3, a partir de instruções armazenadas em uma memória de programa.
+O processamento de matrizes é um componente essencial em diversas áreas da computação, como sistemas embarcados, aprendizado de máquina, visão computacional, computação gráfica, simulações numéricas e controle de sistemas dinâmicos. Para realizar essas operações de forma eficiente, é necessário o uso de arquiteturas especializadas que implementem operações aritméticas com alto desempenho e paralelismo.
 
-## Requisitos do problema
+Neste projeto, desenvolvemos um **co-processador aritmético** dedicado a operações matriciais, implementado em Verilog HDL. O sistema é capaz de executar operações como adição, subtração, multiplicação, transposição, cálculo de determinantes e oposição de matrizes de dimensões entre 2x2 e 5x5. A execução dessas operações é controlada por instruções armazenadas em uma memória de programa.
 
-1. Descrição do hardware com a linguagem **Verilog**.
-2. Utilizar os componentes disponíveis da **FPGA DE1-SoC**.
-3. Realizar as seguintes operações matriciais:
-   - Adição de matrizes
-   - Subtração de matrizes
-   - Multiplicação de matrizes
-   - Multiplicação de matriz por um número inteiro
-   - Determinante
-   - Transposição de matrizes
-   - Cálculo da matriz oposta
-4. Cada elemento é representado por um número inteiro de 8 bits.
-5. O coprocessador deve implementar paralelismo para otimizar a execução.
+## Requisitos do Problema
+
+1. Descrição do hardware utilizando a linguagem **Verilog**.
+2. Utilização dos recursos da **FPGA DE1-SoC** para a implementação.
+3. Implementação das seguintes operações matriciais:
+   - Adição de Matrizes
+   - Subtração de Matrizes
+   - Multiplicação de Matrizes
+   - Multiplicação de Matrizes por um Escalar
+   - Cálculo de Determinante
+   - Transposição de Matrizes
+   - Cálculo da Matriz Oposta
+4. Representação dos elementos das matrizes como números inteiros de **8 bits**.
+5. O coprocessador deve implementar paralelismo para otimizar a execução das operações.
 
 ## Recursos Utilizados
 
 ### Quartus Prime
-O **Quartus Prime** foi utilizado como principal ambiente de desenvolvimento para síntese, compilação e implementação do projeto em Verilog HDL. As principais funções desempenhadas pelo software no projeto foram:
 
-- **Síntese e Análise de Recursos:** Realiza a tradução da descrição em Verilog para circuitos lógicos, permitindo avaliar a utilização de **LUTs**, **DSPs**, dentre outros recursos da FPGA.
-- **Compilação e Geração de Bitstream:** Compila o projeto completo e gera o arquivo de configuração necessário para programar a FPGA.
-- **Gravação na FPGA:** A gravação do projeto na placa **DE1-SoC** foi feita através da ferramenta Programmer, utilizando o cabo **USB-Blaster**.
-- **Pinagem com Pin Planner:** Ferramenta utilizada para mapear os sinais de entrada e saída do projeto aos pinos físicos da FPGA, como **LEDs**, **chaves** (**switches**), **botões** (**keys**) e **displays** disponíveis na placa.
+O **Quartus Prime** foi a principal ferramenta de desenvolvimento utilizada para síntese, compilação e implementação do projeto em Verilog HDL. As funções desempenhadas pelo software incluem:
+
+- **Síntese e Análise de Recursos**: Tradução do código Verilog para circuitos lógicos, permitindo a avaliação de recursos da FPGA, como **LUTs** e **DSPs**.
+- **Compilação e Geração de Bitstream**: Compilação do projeto e geração do arquivo necessário para programar a FPGA.
+- **Gravação na FPGA**: Programação da FPGA utilizando a ferramenta **Programmer** e o cabo **USB-Blaster**.
+- **Pinagem com Pin Planner**: Ferramenta para mapear sinais de entrada e saída do projeto aos pinos físicos da FPGA, como **LEDs**, **switches**, **botões** e **displays**.
 
 ### FPGA DE1-SoC
-A **DE1-SoC** é a plataforma utilizada para a implementação e testes do coprocessador. Ela combina um FPGA da Intel com diversos periféricos integrados, facilitando o desenvolvimento de sistemas embarcados e aplicações em hardware reconfigurável.
 
-- **Dispositivo FPGA:** Cyclone® V SE 5CSEMA5F31C6N.
-- **Memória embarcada:** 4.450 Kbits e 6 blocos DSP de 18x18 bits.
-- **Entradas e saídas utilizadas no projeto:** 4 botões de pressão, 10 chaves deslizantes e 10 LEDs vermelhos de usuário.
+A **FPGA DE1-SoC** foi a plataforma utilizada para a implementação e testes do coprocessador. Essa placa combina um FPGA da Intel com diversos periféricos integrados, oferecendo uma solução robusta para sistemas embarcados e aplicações de hardware reconfigurável.
 
-Para mais informações técnicas, acesse o [Manual da Placa DE1-SoC (PDF)](https://drive.google.com/file/d/1dBaSfXi4GcrSZ0JlzRh5iixaWmq0go2j/view).
+- **Dispositivo FPGA**: Cyclone® V SE 5CSEMA5F31C6N.
+- **Memória Embarcada**: 4.450 Kbits e 6 blocos DSP de 18x18 bits.
+- **Entradas e Saídas**: Utilização de 4 botões de pressão, 10 chaves deslizantes e 10 LEDs vermelhos de usuário.
+
+Para mais informações técnicas, consulte o [Manual da Placa DE1-SoC (PDF)](https://drive.google.com/file/d/1dBaSfXi4GcrSZ0JlzRh5iixaWmq0go2j/view).
 
 ### Icarus Verilog
-O Icarus Verilog foi utilizado como ferramenta de simulação funcional durante o desenvolvimento do projeto. Trata-se de um compilador open-source para a linguagem Verilog, amplamente utilizado para validar o comportamento de circuitos antes da síntese em hardware.
 
-**Funções no projeto:**
-- **Simulação dos módulos individuais:** Permitiu verificar o funcionamento correto de blocos como a ULA, adição, subtração, multiplicação por escalar e determinante antes da integração no sistema completo.
-- **Depuração de lógica:** Facilitou a identificação de erros lógicos e falhas de sincronismo, permitindo testes com diferentes valores de entrada e análise dos sinais de saída.
-- **Validação sem hardware:** Proporcionou uma forma rápida de testar o comportamento do coprocessador sem a necessidade imediata de programar a FPGA, acelerando o ciclo de desenvolvimento.
+O **Icarus Verilog** foi utilizado para simulação funcional durante o desenvolvimento. Esta ferramenta open-source para a linguagem Verilog permitiu validar o comportamento do sistema antes da síntese em hardware.
+
+**Principais funções no projeto:**
+
+- **Simulação de Módulos Individuais**: Verificação do funcionamento correto de blocos como a ULA, adição, subtração, multiplicação por escalar e determinante antes da integração completa do sistema.
+- **Depuração de Lógica**: Identificação de erros lógicos e problemas de sincronismo, facilitando a análise dos sinais de saída e testes com diferentes entradas.
+- **Validação Sem Hardware**: Permitiu testar o comportamento do coprocessador sem a necessidade de programar a FPGA, acelerando o ciclo de desenvolvimento.
 
 ## Desenvolvimento e Arquitetura do Sistema
 
-## Cooprocessor 
-1- Coprocessor 
- O  cooprocessor  é responsável por coordenar operações entre blocos internos do sistema, garantindo a execução paralela e eficiente de cálculos envolvendo matrizes. Embora o sistema opere com apenas quatro operações atômicas, a máquina de estados implementada conta com um número maior de estados, o que é necessário para garantir sincronização, estabilidade e funcionamento confiável mesmo em altas frequências de clock.
-A máquina de estados implementada é composta por 7 estados , organizados de forma sequencial e lógica, contemplando as fases de escrita na memória, leitura dos dados, execução da operação selecionada e gravação dos resultados  , entre cada processo desse existe um estado extra para evitar que erros ocorram com a ultilização da memória . A comunicação com a memória é feita por meio de sinais de controle, incluindo variáveis de write enable e data bus .
+### 🧠 Coprocessor
 
-2. Escrita na Memória (Estado 1)
-Inicialmente, é necessário carregar os valores das matrizes na memória. Esse processo começa com a pré-carga dos dados na FPGA, que são então enviados para a memória por meio do registrador data, o qual se conecta diretamente ao módulo de memória.
+O **Coprocessor** é o módulo central responsável por coordenar o fluxo de dados entre os blocos internos do sistema (memória, ALU e registradores), garantindo a execução sincronizada das operações matriciais. A máquina de estados finita (FSM) gerencia 7 estados distintos para controlar de maneira precisa o processo, respeitando os tempos de acesso à memória e evitando condições de corrida.
 
-A variável de controle responsável pela escrita é ativada (setada em ‘1’), habilitando o modo de escrita na memória. A transmissão dos dados ocorre de forma paralela, ou seja, os valores correspondentes das duas matrizes são enviados simultaneamente para a memória, ocupando posições específicas.
+#### 🔄 Máquina de Estados Finita (FSM)
 
-Para garantir a integridade da operação, o sistema permanece em espera por alguns ciclos (estado de controle), permitindo a sincronização dos dados antes de desativar o write enable e prosseguir com a próxima etapa.
+A FSM do Coprocessor controla todo o fluxo de uma operação, desde a escrita das matrizes na memória, passando pela leitura, execução da operação e até a escrita do resultado final.
 
-3. Leitura da Memória (Estados 3 e 4)
-Nos estados seguintes, ocorre o processo inverso: a leitura dos dados armazenados. Com o sinal de write enable desativado (indicando modo de leitura), o módulo captura os dados das matrizes também de forma paralela, byte a byte.
+##### Estados da FSM
 
-Novamente, é introduzido um estado de controle adicional, garantindo que os valores capturados não apresentem inconsistências antes de serem enviados aos módulos responsáveis pelas operações.
+| Estado | Nome           | Descrição |
+|--------|----------------|-----------|
+| 0      | **IDLE**       | Estado de repouso. Aguarda o sinal `start` para iniciar a operação. |
+| 1      | **WRITE_INPUT**| Escreve os elementos das matrizes A e B na memória. |
+| 2      | **WAIT_WRITE** | Espera alguns ciclos para garantir a estabilidade da escrita. |
+| 3      | **READ_INPUT** | Inicia a leitura das matrizes armazenadas na memória. |
+| 4      | **WAIT_READ**  | Espera para garantir que os dados lidos sejam estáveis. |
+| 5      | **EXECUTE**    | Executa a operação selecionada via `op_code` (e.g., soma, multiplicação, etc). |
+| 6      | **WRITE_RESULT** | Escreve o resultado final da operação de volta na memória. |
 
-4. Execução da Operação (Estados 5 e 6)
-A operação a ser realizada é escolhida de forma prévia por meio de um opcode. No estado 5, os dados já extraídos da memória são processados por unidades operacionais específicas (ex: adição, subtração, multiplicação, etc.), onde todas as operações ocorrem em paralelo.
+Essa organização de estados é crucial para garantir a integridade dos dados durante as operações de leitura e escrita.
 
-No entanto, apenas o resultado da operação correspondente ao opcode é selecionado e armazenado em um vetor de saída.
+#### 🧮 Operações Suportadas
 
-O estado 6 age como buffer de controle, aguardando o tempo necessário antes de habilitar a escrita do resultado final na memória.
+As operações são selecionadas por um sinal de 3 bits, `op_code`, e executadas pela ALU. As operações disponíveis são:
 
-5. Escrita dos Resultados na Memória
-Com os resultados armazenados em um registrador de saída, o coprocessador ativa novamente o sinal de write enable, desta vez para armazenar o resultado final na memória. A escrita ocorre de forma ordenada e paralela, respeitando o posicionamento original das matrizes.
+- **000**: Soma de Matrizes
+- **001**: Subtração de Matrizes
+- **010**: Transposição
+- **011**: Oposição
+- **100**: Multiplicação de Matrizes
+- **101**: Multiplicação por Escalar
+- **110**: Cálculo de Determinante
+
+Essas operações são realizadas apenas após o carregamento completo dos dados da memória, e o resultado é escrito de volta à memória.
+
+#### 📏 Tamanho da Matriz
+
+O tamanho da matriz (entre 2x2 e 5x5) é configurado através de um sinal de entrada chamado `matrix_size`. Esse valor determina:
+
+- O número total de elementos a serem processados.
+- O número de iterações nos loops de controle internos.
+- A ativação de linhas e colunas na ALU.
+
+#### 🧩 Variáveis e Controle Interno
+
+O Coprocessor utiliza registradores e variáveis internas para gerenciar o fluxo de dados e controle. As variáveis principais são:
+
+- `i, j`: Contadores de linha e coluna para os loops de controle.
+- `state`: Estado atual da máquina de estados.
+- `next_state`: Próximo estado (para FSM síncrona).
+- `write_enable`: Habilita a escrita na memória.
+- `read_data_A, read_data_B`: Buffers para armazenar dados lidos da memória.
+- `result`: Vetor temporário para o resultado da operação.
+
+#### ✅ Fluxo de Execução Resumido
+
+O fluxo de execução segue os seguintes passos:
+
+1. **Escrita**: Matrizes A e B são enviadas para a memória com `write_enable = 1`.
+2. **Leitura**: Os dados são lidos da memória com `write_enable = 0`.
+3. **Execução**: A ALU realiza a operação selecionada conforme o `op_code`.
+4. **Resultado**: O vetor `result` é preenchido e escrito de volta na memória.
+5. **Finalização**: O sinal `done` é ativado, indicando o término da operação.
+
+---
+
+Esse documento apresenta uma visão geral detalhada do desenvolvimento e da arquitetura do **Coprocessador** projetado para operações matriciais em FPGA.
 
 ## Bloco de Memória
-A RAM de 1 porta é composta pelos seguintes sinais fundamentais:
-Endereço (address): especifica a posição de memória a ser acessada.
 
-Dado de entrada (data): representa a informação a ser armazenada na memória, no caso de uma escrita.
+A **RAM de 1 porta** é composta pelos seguintes sinais fundamentais:
 
-Dado de saída (q): fornece o conteúdo da posição de memória solicitada, no caso de uma leitura.
+- **Endereço (address)**: Especifica a posição de memória a ser acessada.
+- **Dado de Entrada (data)**: Representa a informação a ser armazenada na memória, no caso de uma escrita.
+- **Dado de Saída (q)**: Fornece o conteúdo da posição de memória solicitada, no caso de uma leitura.
+- **Clock**: Sinal de sincronismo responsável por coordenar as operações internas.
+- **Write Enable (wren)**: Habilita a escrita na memória. Quando ativo, permite que o dado na entrada seja escrito na posição indicada.
 
+### Aplicação em FPGA
 
-Clock: sinal de sincronismo responsável por coordenar as operações internas.
+Internamente, ao instanciar uma **RAM de 1 porta** no **Quartus**, o compilador mapeia automaticamente essa estrutura para os blocos de memória dedicados presentes na arquitetura física da **FPGA**. Esses blocos são otimizados para operações de leitura e escrita em alta velocidade.
 
+### Configuração Utilizada
 
-Write Enable (wren): sinal de habilitação de escrita; quando ativo (nível lógico alto), permite que o dado na entrada seja escrito na posição de memória indicada.
-
-
-O comportamento da RAM segue a lógica síncrona típica: a cada borda de subida do sinal de clock, a operação realizada depende do estado do sinal wren. Se o sinal estiver ativo, o valor presente na entrada data é armazenado na posição indicada por address. Caso contrário, a memória permanece em modo de leitura, e o valor armazenado na posição especificada é apresentado na saída q , o que em nosso sistema ocorre de modo imediato sem haver uma sincronização com o clock de armazenamento.
-
-Aplicação em FPGA
-Internamente, ao instanciar uma RAM de 1 porta que faz parte do IP Catalog no Quartus, o compilador mapeia automaticamente essa estrutura para os blocos de memória dedicados presentes na arquitetura física da FPGA. Esses blocos são otimizados para operações de leitura e escrita em alta velocidade, oferecendo acesso eficiente com baixo consumo de lógica programável.
-Além disso, por meio da aba Tools > In-System Memory Content Editor, é possível visualizar e interagir com o conteúdo da memória durante a execução, o que facilita a análise e depuração do sistema.
-Essas características nos impulsionaram a utilizar essa memória em detrimento de registradores comuns, que são construídos em Verilog a partir da criação de variáveis explícitas . 
-
-Configuração Utilizada
-O módulo Memory Block (RAM 1-Port) foi configurado para conter 4 words de 16 bits cada . 
-
+O módulo **Memory Block** (RAM 1-Port) foi configurado para conter **4 palavras de 16 bits** cada.
 
 ## ULA (Unidade Lógica e Aritmética)
 
@@ -138,4 +177,7 @@ A Unidade Lógica e Aritmética (ULA) é um bloco funcional responsável pela ex
 |`110`     | A × B      | Multiplicação de matrizes|    
 
 ## Referências
-*Colocar as referências utilizadas como o manual da placa, um livro de Sistemas Digitais e um livro que ensine as operações com determinante.*
+
+- [Manual da Placa DE1-SoC (PDF)](https://drive.google.com/file/d/1dBaSfXi4GcrSZ0JlzRh5iixaWmq0go2j/view)
+- [Icarus Verilog - GitHub](https://github.com/steveicarus/iverilog)
+- [Quartus Prime - Documentação Oficial](https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/overview.html)
