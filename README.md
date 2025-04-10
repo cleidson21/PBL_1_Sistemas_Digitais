@@ -20,6 +20,12 @@ O processamento de matrizes é um componente essencial em diversas áreas da com
 
 Neste projeto, desenvolvemos um **co-processador aritmético** dedicado a operações matriciais, implementado em Verilog HDL. O sistema é capaz de executar operações como adição, subtração, multiplicação, transposição, cálculo de determinantes e oposição de matrizes de dimensões entre 2x2 e 5x5. A execução dessas operações é controlada por instruções armazenadas em uma memória de programa.
 
+## 👥 Equipe
+
+- **Cleidson Ramos de Carvalho**
+- **Pedro Arthur**
+- **Uemerson **
+
 ## Requisitos do Problema
 
 1. Descrição do hardware utilizando a linguagem **Verilog**.
