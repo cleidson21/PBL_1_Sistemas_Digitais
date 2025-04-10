@@ -22,9 +22,9 @@ Neste projeto, desenvolvemos um **co-processador aritmético** dedicado a opera�
 
 ## 👥 Equipe
 
-- **Cleidson Ramos de Carvalho**
-- **Pedro Arthur**
-- **Uemerson **
+- **[Cleidson Ramos de Carvalho](https://github.com/cleidson21)**  
+- **[Pedro Arthur Nery da Rocha Costa](https://github.com/pedroarthur2002)**  
+- **[Uemerson Jesus](https://github.com/Uemersonjesus)**  
 
 ## Requisitos do Problema
 
