@@ -9,7 +9,7 @@
   - [FPGA DE1-SoC](#fpga-de1-soc)
   - [Icarus Verilog](#icarus-verilog)
 - [Desenvolvimento e Arquitetura do Sistema](#desenvolvimento-e-arquitetura-do-sistema)
-  - [Unidade de Controle de Operações Matriciais](#unidade-de-controle-de-operações-matriciais)
+  - [Coprocessor](#coprocessor)
   - [Bloco de Memória](#bloco-de-memória)
   - [ULA (Unidade Lógica e Aritmética)](#ula-unidade-lógica-e-aritmética)
 - [Referências](#referências)
@@ -74,7 +74,7 @@ O **Icarus Verilog** foi utilizado para simulação funcional durante o desenvol
 
 ## Desenvolvimento e Arquitetura do Sistema
 
-### 🧠 Coprocessor
+## 🧠 Coprocessor
 
 O **Coprocessor** é o módulo central responsável por coordenar o fluxo de dados entre os blocos internos do sistema (memória, ALU e registradores), garantindo a execução sincronizada das operações matriciais. A máquina de estados finita (FSM) gerencia 7 estados distintos para controlar de maneira precisa o processo, respeitando os tempos de acesso à memória e evitando condições de corrida.
 
@@ -172,6 +172,8 @@ A Unidade Lógica e Aritmética (ULA) é um bloco funcional responsável pela ex
 - Responsável por gerenciar todas as operações
 - Seleciona as operações com base no **opcode**
 
+Cada operação foi implementada por um módulo específico como ilustra a tabela abaixo:
+
 |**opcode**|**Operação**|**Descrição**             |
 |----------|------------|--------------------------|
 |`000`     | A + B      | Soma                     |
@@ -180,7 +182,54 @@ A Unidade Lógica e Aritmética (ULA) é um bloco funcional responsável pela ex
 |`011`     | -A         | Oposição                 |
 |`100`     | k·A        | Mutiplicação por escalar |
 |`101`     | det(A)     | Determinante da matriz   |
-|`110`     | A × B      | Multiplicação de matrizes|    
+|`110`     | A × B      | Multiplicação de matrizes|
+
+### Verificação de Overflow
+No projeto, há duas maneiras de verificar o overflow:
+
+- Utilizada na soma e subtração:
+1. **Sinais Diferentes**: Quando os sinais dos dois operandos (`matrix_A[i*8+7]` e `matrix_B[i*8+7]`) são diferentes, ou seja, um número é positivo e o outro é negativo, o overflow pode ocorrer
+
+2. **Resultado Fora do Intervalo**: O overflow também é detectado se o bit de **overflow** (`diff[i][8]`) for diferente do sinal do operando `A` (`matrix_A[i*8+7]`), indicando que o resultado da subtração está fora do intervalo representável
+
+A detecção de overflow é implementada pela seguinte condição lógica:
+
+```verilog
+assign overflow_check[i] = (matrix_A[i*8+7] != matrix_B[i*8+7]) &&
+                           (diff[i][8] != matrix_A[i*8+7]);
+```
+- Utilizada no determinante, multiplicação de matrizes e multiplicação por escalar:
+1. Verica se o número está além do limite representável de 8 bits:
+```verilog
+overflow_flag = (det_temp > 127) || (det_temp < -128);
+```
+
+### Testes 
+
+Os módulos da **Unidade Lógica Aritmética (ULA)** foram testados individualmente utilizando o **Icarus Verilog**, uma ferramenta de simulação para o desenvolvimento e verificação de códigos Verilog. Cada módulo foi validado isoladamente para garantir que as operações aritméticas e lógicas (como soma, subtração, multiplicação escalar, multiplicação matricial, etc.) funcionassem conforme esperado.
+
+Após os testes individuais dos módulos, todos foram integrados ao **projeto completo** e submetidos a uma simulação mais abrangente usando o **Quartus**. O Quartus foi utilizado para sintetizar o design e validar a integração dos módulos, assegurando que o sistema funcionasse corretamente em um ambiente de hardware simulado para a implementação final.
+
+## Como Executar
+
+Para executar o projeto do coprocessador de operações matriciais em FPGA, siga as etapas abaixo, desde a preparação do ambiente de desenvolvimento até a execução no hardware real.
+
+### Requisitos
+
+Antes de executar o projeto, certifique-se de ter as ferramentas e equipamentos abaixo configurados:
+
+1. **Quartus Prime** instalado (para síntese e geração do bitstream).
+3. **FPGA DE1-SoC** ou outra plataforma FPGA compatível.
+4. **Cabo USB-Blaster** para programação da FPGA.
+
+### Passos para Simulação e Execução
+
+#### 1. Preparação do Código
+
+1. Clone ou baixe o repositório com o código do projeto.
+2. Abra o **Quartus Prime** e clique em **File** e **Open Project**.
+3. Selecione o arquivo `coprocessor.qpf` e compile projeto.
+4. Grave-o na FPGA **DE1-SoC**.
 
 ## Referências
 
