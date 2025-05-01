@@ -1,0 +1,134 @@
+﻿//editado
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <string.h>
+
+
+#define COM_PORT "/dev/ttyVIRTUAL"  // Substitua pela porta correta (ex: /dev/ttyUSB0)
+#define BAUD_RATE B9600
+
+
+// Configura a porta serial
+int configure_uart(int *serial_fd) {
+    *serial_fd = open(COM_PORT, O_RDWR | O_NOCTTY);
+    if (*serial_fd == -1) {
+        perror("Erro ao abrir porta serial");
+        return 0;
+    }
+
+
+    struct termios options;
+    tcgetattr(*serial_fd, &options);
+
+
+    cfsetispeed(&options, BAUD_RATE);
+    cfsetospeed(&options, BAUD_RATE);
+
+
+    options.c_cflag &= ~PARENB; // Sem paridade
+    options.c_cflag &= ~CSTOPB; // 1 stop bit
+    options.c_cflag &= ~CSIZE;
+    options.c_cflag |= CS8;     // 8 bits de dados
+    options.c_cflag |= CREAD | CLOCAL; // Habilita leitura e ignora modem control
+
+
+    options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG); // Modo raw
+    options.c_iflag &= ~(IXON | IXOFF | IXANY); // Sem controle de fluxo
+    options.c_oflag &= ~OPOST; // Modo raw
+
+
+    options.c_cc[VMIN] = 1;  // Espera por pelo menos 1 byte
+    options.c_cc[VTIME] = 0; // Sem timeout
+
+
+    tcflush(*serial_fd, TCIFLUSH);
+    if (tcsetattr(*serial_fd, TCSANOW, &options) != 0) {
+        perror("Erro ao configurar porta serial");
+        return 0;
+    }
+
+
+    return 1;
+}
+
+
+// Envia um byte pela serial
+void send_data(int serial_fd, unsigned char data) {
+    if (write(serial_fd, &data, 1) < 0) {
+        perror("Erro ao enviar dado");
+    }
+}
+
+
+// Recebe um byte da serial
+int receive_data(int serial_fd, unsigned char *data) {
+    int n = read(serial_fd, data, 1);
+    return (n == 1);
+}
+
+
+int main() {
+    int serial_fd;
+
+
+    if (!configure_uart(&serial_fd)) {
+        return 1;
+    }
+
+
+    int rows;
+    printf("Digite o numero de linhas da matriz (2-5): ");
+    scanf("%d", &rows);
+    if (rows < 2 || rows > 5) {
+        printf("Numero de linhas invalido! Deve ser entre 2 e 5.\n");
+        close(serial_fd);
+        return 1;
+    }
+
+
+    unsigned char matrix[5][5];
+
+
+    printf("Digite os valores da matriz (em hexadecimal):\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
+            printf("Valor para posicao [%d][%d]: ", i + 1, j + 1);
+            scanf("%hhx", &matrix[i][j]);
+        }
+    }
+
+
+    printf("\nEnviando dados para a FPGA:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
+            send_data(serial_fd, matrix[i][j]);
+            printf("Dado enviado: 0x%X\n", matrix[i][j]);
+            sleep(1);  // 1 segundo de espera
+        }
+    }
+
+
+    printf("\nAguardando resposta da FPGA...\n");
+
+
+    unsigned char result;
+    int received_count = 0;
+
+
+    while (1) {
+        if (receive_data(serial_fd, &result)) {
+            printf("Resposta recebida [%d]: 0x%X\n", received_count + 1, result);
+            received_count++;
+        } else {
+            printf("Esperando dado...\n");
+            usleep(100000); // 100ms
+        }
+    }
+
+
+    close(serial_fd);
+    return 0;
+}
